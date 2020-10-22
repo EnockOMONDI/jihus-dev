@@ -1,0 +1,103 @@
+{% extends 'registration/base/loginbase.html' %}
+{% load static %}
+{% load crispy_forms_tags i18n %}
+
+{% block content %}
+<br><br>
+<div class="container ">
+    <div class="row justify-content-center ">
+      
+      <div class="col-lg-4 col-md-12 col-xs-12 ">
+
+          
+           <div class="usercontent text-center">
+                
+                <figure>
+                    <a href="#"><img class="-img-fluid" src="{% static 'assets/img/logo0.png' %}" style="width:240px; height:93px;" alt="yumilogo"></a>
+                  </figure>
+               
+            </div> 
+        
+               
+       
+        <div class="page-login-form box">
+          <h3>
+            Login
+          </h3>
+          {% if messages %}
+          {% for message in messages %}
+        
+
+
+          <div class="alert {{ message.error}} alert-dismissible alert-success fade show" role="alert">
+              <strong>Opps, </strong> {{ message }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+          <div class="alert {{ message.success}} alert-dismissible alert-success fade show" role="alert">
+                              <strong>Perfect, {{user.first_name}} </strong> {{ message }}
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+          {% endfor %}
+          {% endif %}
+          <div id="error_box" name="error_box" class="alert alert-danger alert-dismissable" hidden="true">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            ERROR: This is to be filled in by the "print_error" function. If you see this message that means there's an error with your javascript somewhere.
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
+            <div class="form-group">
+              <div class="input-icon">
+                <i class="icon fas fa-user"></i>
+                <input  type="text" class="form-control" name="username" required="" id="id_username" placeholder="Enter Username" autocorrect="off" autocapitalize="none">
+              </div>
+            </div> 
+            <div class="form-group">
+              <div class="input-icon">
+                <i class="icon fas fa-unlock-alt"></i>
+                <input type="password" class="form-control" name="password" id="id_password" required="" placeholder="Enter Password">
+              </div>
+            </div>                  
+            <!-- <div class="checkbox">
+              <input type="checkbox" id="remember" name="rememberme" value="forever" style="float: left;">
+              <label for="remember">Remember me</label>
+            </div> -->
+          
+            <div class="modal-footer justify-content-center">
+                <button  type="submit"
+                     style="background-color:rgb(4, 27, 5)"       class="btn btn-common ">Sign in
+              </button> 
+         
+            </div>
+          </form>
+         
+       
+          <ul class="form-links">
+            <li class="float-right"><a href="/forgot_password">Lost your password?</a></li>
+            <li class="float-left"><a  href="">Don't have an account?</a></li>
+
+          </ul>
+          <br> 
+    
+        </div>
+        <br>    <br>   
+        <div class=" justify-content-center text-center" >
+          <h6>   Copyright <script>
+           document.write(new Date().getFullYear())
+         </script> &#xA9; <span style="color: #ff660dc0;"> Jihusishe</span> </h6>
+      
+  
+       </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+{% endblock %}
